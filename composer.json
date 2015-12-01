@@ -1,0 +1,26 @@
+{
+	"keywords" : [
+		"api server",
+		"swoole",
+		"tcp"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"Wx\\Wxserver\\" : "src",
+			"Wx\\Wxserver\\Compent\\" : "src/compent",
+			"Wx\\Wxserver\\Model\\" : "src/model",
+			"Wx\\Wxserver\\Service\\" : "src/service",
+			"Wx\\Wxserver\\Config\\" : "src/config",
+			"Wx\\Wxserver\\Sdk\\" : "src/sdk"
+		}
+	},
+	"name" : "wxserver/wxserver",
+	"description" : "a api server base on swoole",
+	"license" : "MIT",
+	"require" : {
+		"php" : ">=5.5",
+		"wx/wxdb" : "0.1.x-dev",
+		"wx/wxutils" : "dev-master",
+		"monolog/monolog" : "1.17.2"
+	}
+}
