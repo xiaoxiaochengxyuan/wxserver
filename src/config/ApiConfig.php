@@ -29,7 +29,7 @@ class ApiConfig {
 			//这里配置dispatch_mode采用抢占模式,主进程会根据Worker的忙闲状态选择投递，只会投递给处于闲置状态的Worker,这种模式非常适合Api服务器
 			'dispatch_mode' => 3,
 			//这里设置服务为守护进程,在后台自动运行
-			'daemonize' => 0,
+			'daemonize' => 1,
 			//设置没30秒发送一次心跳检测
 			'heartbeat_check_interval' => 30,
 			//设置允许最大的空闲连接
@@ -83,6 +83,17 @@ class ApiConfig {
 				'password' => '398062080',
 				'charset' => 'utf8',
 			),
+		);
+	}
+	
+	/**
+	 * 获取Log相关的配置
+	 * @return multitype:string
+	 */
+	public static function getLogConfig() {
+		return array(
+			'log_path' => '/data/log/wxserver',
+			'name' => 'wxserver_log',
 		);
 	}
 }

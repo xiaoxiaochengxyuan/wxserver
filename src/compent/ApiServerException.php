@@ -16,6 +16,8 @@ class ApiServerException extends \Exception {
 	const ERROR_CODE_SERVICE_NOT_FOUND = 50053;
 	//数据库方面的错误代码
 	const ERROR_CODE_DB_ERROR = 50054;
+	//运行时错误代码
+	const ERROR_CODE_RUNTIME_EXCEPTION = 50055;
 	public function __construct($message, $code, $previous = null) {
 		parent::__construct($message, $code, $previous);
 	}

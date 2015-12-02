@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/xiaoxiaochengxyuan/wxdb.git",
-                "reference": "8b17ad8d01faa1a37ffc6aff36adb58a1cb5a28f"
+                "reference": "81706b4e06645fa518601dd809edc763e5bfea30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xiaoxiaochengxyuan/wxdb/zipball/8b17ad8d01faa1a37ffc6aff36adb58a1cb5a28f",
-                "reference": "8b17ad8d01faa1a37ffc6aff36adb58a1cb5a28f",
+                "url": "https://api.github.com/repos/xiaoxiaochengxyuan/wxdb/zipball/81706b4e06645fa518601dd809edc763e5bfea30",
+                "reference": "81706b4e06645fa518601dd809edc763e5bfea30",
                 "shasum": ""
             },
             "require": {
@@ -159,7 +159,7 @@
             "keywords": [
                 "wxdb"
             ],
-            "time": "2015-12-01 08:59:01"
+            "time": "2015-12-02 07:35:24"
         },
         {
             "name": "wx/wxutils",

@@ -111,22 +111,36 @@ class ApiServer {
 					if (!\class_exists($serviceName)) {
 						$this->clientResult($serv, $fd, false, '您要请求的服务不存在,请检查!');
 					} else {
-						$reflectionClass = Service::refInstance($serviceName);
-						$service = Service::getService($serviceName);
-						$methodName = $receiveData['method'];
-						if (!$reflectionClass->hasMethod($methodName)) {
-							$this->clientResult($serv, $fd, false, '您请求的服务不存在,请检查');
+						$reflectionClass = new \ReflectionClass($serviceName);
+						$method = $receiveData['method'];
+						if (!$reflectionClass->hasMethod($method)) {
+							$this->clientResult($serv, $fd, false, '您要请求的服务不存在,请检查!');
 						} else {
-							$reflectionMethod = $reflectionClass->getMethod($methodName);
+							$reflectionMethod = $reflectionClass->getMethod($method);
 							if (!$reflectionMethod->isPublic()) {
-								$this->clientResult($serv, $fd, false, '您请求的服务尚未开放,请检查');
+								$this->clientResult($serv, $fd, false, '您要请求的服务不存在,请检查!');
 							} else {
+								$apiLogger = ApiLogger::instance();
+								$start_time = \microtime(true);
 								try {
-									$data = $reflectionMethod->invokeArgs($service, $receiveData['params']);
+									$data = $reflectionMethod->invoke($reflectionClass->newInstance(), $receiveData['params']);
 									$this->clientResult($serv, $fd, true, null, $data);
-								} catch (\Exception $ex) {
-									$this->clientResult($serv, $fd, false, $ex->getMessage());
+								} catch (\Exception $e) {
+									$apiLogger->addError($e->getTraceAsString());
+									$this->clientResult($serv, $fd, false, $e->getMessage());
 								}
+								$end_time = \microtime(true);
+								$fdinfo = $serv->connection_info($fd);
+								$apiLogger->addInfo(\json_encode(array(
+									'start_time' => $start_time,
+									'end_time' => $end_time,
+									'use_time' => $end_time - $start_time,
+									'serice_name' => $serviceName,
+									'method_name' => $method,
+									'params' => $receiveData['params'],
+									'remote_ip' => $fdinfo['remote_ip'],
+									'app_name' => $receiveData['app'],
+								)));
 							}
 						}
 					}
