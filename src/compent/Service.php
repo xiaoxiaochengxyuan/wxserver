@@ -146,7 +146,7 @@ abstract class Service {
 	 * 获取表明
 	 * @return string
 	 */
-	abstract public function tableName();
+	abstract protected function tableName();
 	
 	/**
 	 * 通过Id获取一条数据

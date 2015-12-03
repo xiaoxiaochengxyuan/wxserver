@@ -7,7 +7,7 @@ class UserService extends Service {
 	 * (non-PHPdoc)
 	 * @see \Wx\Wxserver\Compent\Service::tableName()
 	 */
-	public function tableName() {
+	protected function tableName() {
 		return self::TABLE_NAME;
 	}
 }
